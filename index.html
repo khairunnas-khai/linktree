@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Khairunnas' Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .dark-mode {
+            background-color: #1a202c;
+            color: white;
+        }
+        .dark-mode .bg-white {
+            background-color: #2d3748 !important;
+        }
+        .dark-mode .text-gray-600 {
+            color: #a0aec0 !important;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center">
+    <header class="w-full max-w-6xl p-4 flex justify-between items-center">
+        <button id="theme-toggle" class="bg-gray-700 text-white px-4 py-2 rounded-full">
+            <i class="fas fa-adjust"></i>
+        </button>
+        <div class="flex space-x-4">
+            <a class="text-sm text-gray-600" href="https://www.linkedin.com/in/khairunnas-khai/"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a class="text-sm text-gray-600" href="https://github.com/khairunnas-khai"><i class="fab fa-github"></i> GitHub</a>
+            <a class="text-sm text-gray-600" href="https://dribbble.com/khydesign"><i class="fab fa-dribbble"></i> Dribbble</a>
+            <a class="text-sm text-gray-600" href="https://www.instagram.com/khairuoennas"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+    </header>
+    <main class="w-full max-w-6xl p-4 flex flex-col items-center text-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full">
+            <img src="https://avatars.githubusercontent.com/u/83722191?v=4" alt="Profile picture" class="rounded-full mx-auto mb-4" width="100" height="100"/>
+            <h1 class="text-2xl font-bold mb-2">Building impactful <span class="font-bold">digital solutions</span> with <span class="font-bold">technology</span>.</h1>
+            <button class="bg-black text-white px-4 py-2 rounded-full">Latest Projects <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <section class="mt-16 w-full text-center">
+            <h2 class="text-xl font-bold mb-4">Latest Projects</h2>
+            <div class="bg-white p-4 rounded-lg shadow-lg w-full">
+                <h3 class="font-bold">ITMP USK</h3>
+                <p>A confidential project focused on implementing an integrated IT management platform at Universitas Syiah Kuala, enhancing security, efficiency, and data governance.</p>
+            </div>
+        </section>
+        <section class="mt-16 w-full text-center">
+            <h2 class="text-xl font-bold mb-4">Skills & Services</h2>
+            <div class="flex flex-wrap justify-center items-center space-x-4">
+                <div class="bg-white p-4 rounded-lg shadow-lg w-64">
+                    <i class="fas fa-laptop text-2xl mb-2"></i>
+                    <h3 class="font-bold">IT Enthusiast</h3>
+                    <p>Exploring and learning new technologies to create innovative solutions.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg w-64">
+                    <i class="fas fa-paint-brush text-2xl mb-2"></i>
+                    <h3 class="font-bold">UX/UI Design</h3>
+                    <p>Designing user-friendly and visually appealing digital experiences.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg w-64">
+                    <i class="fas fa-code text-2xl mb-2"></i>
+                    <h3 class="font-bold">Front-End Web Development</h3>
+                    <p>Developing responsive and dynamic web interfaces with modern technologies.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="w-full max-w-6xl p-4 flex flex-col items-center text-center mt-16">
+        <h2 class="text-xl font-bold mb-4">Let's Work Together</h2>
+        <div class="flex space-x-4">
+            <a href="mailto:khairunnas2804@gmail.com" class="bg-gray-700 text-white px-4 py-2 rounded-full"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>
