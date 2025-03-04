@@ -1,61 +1,113 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme toggler dengan animasi
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.setAttribute('data-bs-theme', savedTheme);
-    updateThemeIcon(savedTheme === 'dark');
+    // Loading screen with timeout
+    const loading = document.querySelector('.loading');
+    const loadingTimeout = setTimeout(() => {
+        loading.classList.add('hide');
+        setTimeout(() => loading.remove(), 500);
+    }, 2000); // Maksimum loading time
 
-    // Theme toggle handler dengan animasi
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.body.getAttribute('data-bs-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        // Animasi transisi tema
-        document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-        document.body.setAttribute('data-bs-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme === 'dark');
+    window.addEventListener('load', () => {
+        clearTimeout(loadingTimeout);
+        loading.classList.add('hide');
+        setTimeout(() => loading.remove(), 500);
     });
 
-    function updateThemeIcon(isDark) {
-        themeIcon.style.transform = 'rotate(180deg)';
-        setTimeout(() => {
+    // Theme Toggle dengan improved performance
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+    const themeLabel = document.getElementById('themeLabel');
+    const html = document.documentElement;
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    const navbar = document.querySelector('.navbar');
+    
+    function setTheme(isDark) {
+        // Batch DOM updates
+        requestAnimationFrame(() => {
+            html.setAttribute('data-bs-theme', isDark ? 'dark' : 'light');
             themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-            themeIcon.style.transform = 'rotate(0deg)';
-        }, 150);
+            themeLabel.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            
+            // Update meta theme-color
+            metaThemeColor.setAttribute('content', isDark ? '#0f172a' : '#ffffff');
+            
+            // Update navbar background dengan alpha untuk better readability
+            navbar.style.backgroundColor = isDark 
+                ? 'rgba(15, 23, 42, 0.98)' 
+                : 'rgba(255, 255, 255, 0.98)';
+        });
+        
+        // Save theme preference
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
 
-    // Smooth scrolling dengan offset untuk navbar
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Check system theme dengan cache
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    function getSystemTheme() {
+        return mediaQuery.matches ? 'dark' : 'light';
+    }
+
+    // Initialize theme dengan priority order
+    const savedTheme = localStorage.getItem('theme');
+    const systemTheme = getSystemTheme();
+    setTheme(savedTheme ? savedTheme === 'dark' : systemTheme === 'dark');
+
+    // Theme toggle dengan debounce
+    let themeToggleTimeout;
+    themeToggle.addEventListener('click', () => {
+        clearTimeout(themeToggleTimeout);
+        themeToggleTimeout = setTimeout(() => {
+            const isDark = html.getAttribute('data-bs-theme') === 'dark';
+            setTheme(!isDark);
+        }, 150);
+    });
+
+    // System theme change listener dengan debounce
+    let systemThemeTimeout;
+    mediaQuery.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            clearTimeout(systemThemeTimeout);
+            systemThemeTimeout = setTimeout(() => {
+                setTheme(e.matches);
+            }, 150);
+        }
+    });
+
+    // Smooth scrolling dengan improved performance
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    navLinks.forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            
             if (target) {
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const navbarHeight = navbar.offsetHeight;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
                 
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
+
+                // Update URL tanpa reload
+                history.pushState(null, '', `#${targetId}`);
             }
         });
     });
 
-    // Animasi scroll reveal yang lebih halus
+    // Scroll Reveal Animation dengan optimized Intersection Observer
     const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
     const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+                requestAnimationFrame(() => {
+                    entry.target.classList.add('active');
+                });
                 scrollObserver.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1,
+        threshold: 0.15,
         rootMargin: '0px 0px -50px 0px'
     });
 
@@ -63,134 +115,149 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollObserver.observe(element);
     });
 
-    // Navbar scroll effect yang lebih halus
-    const navbar = document.querySelector('.navbar');
+    // Navbar scroll effect dengan optimized throttling
     let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll <= 0) {
-            navbar.classList.remove('navbar-scrolled');
-            return;
-        }
-        
-        if (currentScroll > lastScroll && !navbar.classList.contains('navbar-scrolled')) {
-            // Scroll down
-            navbar.classList.add('navbar-scrolled');
-        } else if (currentScroll < lastScroll && navbar.classList.contains('navbar-scrolled')) {
-            // Scroll up
-            navbar.classList.remove('navbar-scrolled');
-        }
-        
-        lastScroll = currentScroll;
-    });
-
-    // Active navigation link dengan debounce
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            const sections = document.querySelectorAll('section');
-            const scrollPosition = window.scrollY + 100;
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.clientHeight;
+    let ticking = false;
+    const navbarScrollHandler = () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const currentScroll = window.pageYOffset;
+                const isDark = html.getAttribute('data-bs-theme') === 'dark';
                 
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    const currentId = section.getAttribute('id');
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${currentId}`) {
-                            link.classList.add('active');
-                        }
-                    });
+                if (currentScroll <= 0) {
+                    navbar.classList.remove('navbar-scrolled');
+                    navbar.style.backgroundColor = isDark 
+                        ? 'rgba(15, 23, 42, 0.98)' 
+                        : 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    navbar.classList.add('navbar-scrolled');
+                    navbar.style.backgroundColor = isDark 
+                        ? '#0f172a' 
+                        : '#ffffff';
                 }
+                
+                lastScroll = currentScroll;
+                ticking = false;
             });
-        }, 100);
-    });
+            ticking = true;
+        }
+    };
 
-    // Form submission handler dengan validasi yang lebih baik
-    const contactForm = document.querySelector('#contact form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const name = contactForm.querySelector('input[type="text"]').value.trim();
-            const email = contactForm.querySelector('input[type="email"]').value.trim();
-            const message = contactForm.querySelector('textarea').value.trim();
-            
-            // Validasi form
-            if (!name || !email || !message) {
-                showNotification('Mohon lengkapi semua field', 'error');
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                showNotification('Email tidak valid', 'error');
-                return;
-            }
-            
-            try {
-                // Simulasi pengiriman form
-                showNotification('Mengirim pesan...', 'info');
-                
-                // Di sini Anda bisa menambahkan kode untuk mengirim data ke server
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                showNotification('Pesan Anda telah terkirim!', 'success');
-                contactForm.reset();
-            } catch (error) {
-                showNotification('Terjadi kesalahan. Silakan coba lagi.', 'error');
-            }
-        });
-    }
+    window.addEventListener('scroll', navbarScrollHandler, { passive: true });
 
-    // Fungsi validasi email
-    function isValidEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    // Fungsi notifikasi
-    function showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-        
-        document.body.appendChild(notification);
-        
-        // Animasi masuk
-        setTimeout(() => notification.classList.add('show'), 100);
-        
-        // Animasi keluar
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
-
-    // Inisialisasi Lottie Animations dengan optimasi
-    const lottieElements = document.querySelectorAll('lottie-player');
-    const lottieObserver = new IntersectionObserver((entries) => {
+    // Active navigation dengan optimized Intersection Observer
+    const navSections = document.querySelectorAll('section');
+    const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.play();
-            } else {
-                entry.target.pause();
+                const id = entry.target.getAttribute('id');
+                requestAnimationFrame(() => {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    });
+                });
             }
         });
-    }, { 
-        threshold: 0.1,
-        rootMargin: '50px'
+    }, {
+        threshold: 0.5,
+        rootMargin: '-50% 0px -50% 0px'
     });
 
-    lottieElements.forEach(element => {
-        lottieObserver.observe(element);
+    navSections.forEach(section => {
+        navObserver.observe(section);
     });
 
-    // Tambahkan class scroll-reveal ke elemen-elemen yang perlu di-animate
-    document.querySelectorAll('.skill-card, .portfolio-item, .about-content, .contact-info').forEach(el => {
-        el.classList.add('scroll-reveal');
+    // Contact Form dengan improved validation dan feedback
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        const formInputs = {
+            name: document.getElementById('name'),
+            email: document.getElementById('email'),
+            message: document.getElementById('message')
+        };
+
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        let formSubmitting = false;
+
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (formSubmitting) return;
+            formSubmitting = true;
+            submitButton.disabled = true;
+
+            // Reset error states
+            Object.values(formInputs).forEach(input => {
+                input.classList.remove('is-invalid');
+            });
+
+            // Validation
+            const validationErrors = [];
+            
+            if (!formInputs.name.value.trim()) {
+                formInputs.name.classList.add('is-invalid');
+                validationErrors.push('Please enter your name');
+            }
+            
+            if (!formInputs.email.value.trim() || !isValidEmail(formInputs.email.value)) {
+                formInputs.email.classList.add('is-invalid');
+                validationErrors.push('Please enter a valid email address');
+            }
+            
+            if (!formInputs.message.value.trim()) {
+                formInputs.message.classList.add('is-invalid');
+                validationErrors.push('Please enter your message');
+            }
+
+            if (validationErrors.length > 0) {
+                alert(validationErrors.join('\n'));
+                formSubmitting = false;
+                submitButton.disabled = false;
+                return;
+            }
+
+            try {
+                // Simulate form submission
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                alert(`Thank you ${formInputs.name.value}! Your message has been received. We will contact you at ${formInputs.email.value} soon.`);
+                contactForm.reset();
+            } catch (error) {
+                alert('An error occurred. Please try again later.');
+            } finally {
+                formSubmitting = false;
+                submitButton.disabled = false;
+            }
+        });
+
+        // Real-time validation
+        Object.entries(formInputs).forEach(([key, input]) => {
+            let validationTimeout;
+            input.addEventListener('input', () => {
+                clearTimeout(validationTimeout);
+                validationTimeout = setTimeout(() => {
+                    input.classList.remove('is-invalid');
+                    
+                    if (key === 'email' && input.value && !isValidEmail(input.value)) {
+                        input.classList.add('is-invalid');
+                    }
+                }, 500);
+            });
+        });
+    }
+
+    // Email validation helper dengan improved regex
+    function isValidEmail(email) {
+        return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+    }
+
+    // Add scroll-reveal class dengan batch processing
+    const elementsToAnimate = document.querySelectorAll('.skill-card, .portfolio-item, .about-content, .contact-info');
+    requestAnimationFrame(() => {
+        elementsToAnimate.forEach(el => {
+            if (!el.classList.contains('scroll-reveal')) {
+                el.classList.add('scroll-reveal');
+            }
+        });
     });
-}); 
+});

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Khairunnas</title>
+    <meta name="theme-color" content="#ffffff">
+    <title>Khairunnas Portfolio</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -13,34 +14,39 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body data-bs-theme="light">
+<body>
+    <!-- Loading Screen -->
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Khairunnas</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="#home">Khai</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Beranda</a>
+                        <a class="nav-link" href="#home" aria-current="page">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">Tentang</a>
+                        <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#skills">Keahlian</a>
+                        <a class="nav-link" href="#skills">Skills</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#portfolio">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Kontak</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <button class="btn theme-toggle" id="theme-toggle">
-                            <i class="fas fa-moon"></i>
+                        <button class="btn btn-link nav-link theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                            <i class="fas fa-moon" aria-hidden="true"></i>
                         </button>
                     </li>
                 </ul>
@@ -53,22 +59,22 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <div class="hero-content">
+                    <div class="hero-content scroll-reveal">
                         <h1 class="display-4 fw-bold mb-4">Khairunnas</h1>
                         <p class="lead mb-4">Front-end Developer & UI/UX Designer</p>
                         <div class="hero-icons mb-4">
-                            <i class="fab fa-wordpress fa-2x me-3" title="WordPress"></i>
-                            <i class="fas fa-database fa-2x me-3" title="Database"></i>
+                            <i class="fab fa-wordpress fa-2x me-3" title="WordPress Development"></i>
+                            <i class="fas fa-database fa-2x me-3" title="Database Management"></i>
                             <i class="fas fa-paint-brush fa-2x me-3" title="UI/UX Design"></i>
-                            <i class="fas fa-code fa-2x me-3" title="Front-End"></i>
+                            <i class="fas fa-code fa-2x me-3" title="Front-End Development"></i>
                             <i class="fas fa-server fa-2x" title="IT Infrastructure"></i>
                         </div>
-                        <a href="#contact" class="btn btn-primary btn-lg">Hubungi Saya</a>
+                        <a href="#contact" class="btn btn-primary btn-lg">Get in Touch</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="section-icon">
-                        <i class="fas fa-code-branch"></i>
+                    <div class="section-icon scroll-reveal">
+                        <i class="fas fa-code-branch" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -78,21 +84,21 @@
     <!-- About Section -->
     <section id="about" class="section-padding">
         <div class="container">
-            <h2 class="section-title text-center mb-5">Tentang Saya</h2>
+            <h2 class="section-title text-center mb-5">About Me</h2>
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <div class="about-content">
-                        <p class="lead mb-4">Saya adalah seorang IT Enthusiast yang fokus pada pengembangan web dan desain UI/UX. Dengan pengalaman dalam WordPress development dan pembuatan landing page, saya membantu klien mengembangkan solusi digital yang efektif dan menarik.</p>
+                    <div class="about-content scroll-reveal">
+                        <p class="lead mb-4">I am an IT Enthusiast focused on web development and UI/UX design. With experience in WordPress development and landing page creation, I help clients develop effective and attractive digital solutions.</p>
                         <div class="about-info">
-                            <p><i class="fas fa-graduation-cap me-2"></i> S1 Teknik Informatika - Universitas Syiah Kuala</p>
-                            <p><i class="fas fa-briefcase me-2"></i> IT Enthusiast & Web Developer</p>
-                            <p><i class="fas fa-map-marker-alt me-2"></i> Aceh</p>
+                            <p><i class="fas fa-graduation-cap me-2" aria-hidden="true"></i> Bachelor of Computer Engineering - Syiah Kuala University</p>
+                            <p><i class="fas fa-briefcase me-2" aria-hidden="true"></i> IT Enthusiast & Web Developer</p>
+                            <p><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i> Based in Jakarta, Indonesia</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="section-icon">
-                        <i class="fas fa-user-circle"></i>
+                    <div class="section-icon scroll-reveal">
+                        <i class="fas fa-user-circle" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -102,51 +108,53 @@
     <!-- Skills Section -->
     <section id="skills" class="section-padding bg-light">
         <div class="container">
-            <h2 class="section-title text-center mb-5">Keahlian</h2>
+            <h2 class="section-title text-center mb-5">My Skills</h2>
             <div class="row g-4">
                 <div class="col-lg-6 col-md-6">
                     <div class="skill-card">
-                        <i class="fas fa-code"></i>
+                        <i class="fas fa-code" aria-hidden="true"></i>
                         <h3>Front-end & WordPress Development</h3>
                         <ul class="skill-list">
-                            <li><i class="fas fa-check me-2"></i>HTML5, CSS3 & JavaScript</li>
-                            <li><i class="fas fa-check me-2"></i>Bootstrap & Responsive Design</li>
-                            <li><i class="fas fa-check me-2"></i>WordPress Theme Development</li>
-                            <li><i class="fas fa-check me-2"></i>UI/UX Implementation</li>
+                            <li><i class="fab fa-html5" aria-hidden="true"></i>HTML5, CSS3 & JavaScript</li>
+                            <li><i class="fas fa-mobile-alt" aria-hidden="true"></i>Bootstrap & Responsive Design</li>
+                            <li><i class="fab fa-wordpress" aria-hidden="true"></i>WordPress Theme Development</li>
+                            <li><i class="fas fa-desktop" aria-hidden="true"></i>UI/UX Implementation</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="skill-card">
-                        <i class="fas fa-paint-brush"></i>
+                        <i class="fas fa-paint-brush" aria-hidden="true"></i>
                         <h3>UX/UI Design</h3>
                         <ul class="skill-list">
-                            <li><i class="fas fa-check me-2"></i>User Interface Design</li>
-                            <li><i class="fas fa-check me-2"></i>User Experience Design</li>
-                            <li><i class="fas fa-check me-2"></i>Prototyping</li>
+                            <li><i class="fas fa-pencil-ruler" aria-hidden="true"></i>User Interface Design</li>
+                            <li><i class="fas fa-users" aria-hidden="true"></i>User Experience Design</li>
+                            <li><i class="fas fa-project-diagram" aria-hidden="true"></i>Prototyping & Wireframing</li>
+                            <li><i class="fas fa-layer-group" aria-hidden="true"></i>Design Systems</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="skill-card">
-                        <i class="fas fa-palette"></i>
+                        <i class="fas fa-palette" aria-hidden="true"></i>
                         <h3>Graphic Design</h3>
                         <ul class="skill-list">
-                            <li><i class="fas fa-check me-2"></i>Figma Design</li>
-                            <li><i class="fas fa-check me-2"></i>Canva Design</li>
-                            <li><i class="fas fa-check me-2"></i>Adobe Photoshop</li>
-                            <li><i class="fas fa-check me-2"></i>Visual Branding</li>
+                            <li><i class="fab fa-figma" aria-hidden="true"></i>Figma Design</li>
+                            <li><i class="fas fa-pen-fancy" aria-hidden="true"></i>Canva Design</li>
+                            <li><i class="fab fa-adobe" aria-hidden="true"></i>Adobe Photoshop</li>
+                            <li><i class="fas fa-swatchbook" aria-hidden="true"></i>Visual Branding</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="skill-card">
-                        <i class="fas fa-database"></i>
+                        <i class="fas fa-database" aria-hidden="true"></i>
                         <h3>Database & IT Infrastructure</h3>
                         <ul class="skill-list">
-                            <li><i class="fas fa-check me-2"></i>Database Management</li>
-                            <li><i class="fas fa-check me-2"></i>IT Infrastructure Setup</li>
-                            <li><i class="fas fa-check me-2"></i>System Maintenance</li>
+                            <li><i class="fas fa-server" aria-hidden="true"></i>Database Management</li>
+                            <li><i class="fas fa-network-wired" aria-hidden="true"></i>IT Infrastructure Setup</li>
+                            <li><i class="fas fa-cogs" aria-hidden="true"></i>System Maintenance</li>
+                            <li><i class="fas fa-shield-alt" aria-hidden="true"></i>Network Security</li>
                         </ul>
                     </div>
                 </div>
@@ -157,100 +165,100 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="section-padding">
         <div class="container">
-            <h2 class="section-title text-center mb-5">Portfolio</h2>
+            <h2 class="section-title text-center mb-5">My Portfolio</h2>
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item scroll-reveal">
                         <div class="portfolio-icon p-3">
-                            <i class="fas fa-shield-alt fa-3x text-primary"></i>
+                            <i class="fas fa-shield-alt fa-3x text-primary" aria-hidden="true"></i>
                         </div>
                         <div class="portfolio-content">
-                            <h3>ITMP USK</h3>
-                            <p>Pengembangan sistem keamanan dan infrastruktur IT untuk Institut Teknologi dan Manajemen Pemerintahan USK.</p>
-                            <div class="portfolio-tech">
-                                <i class="fas fa-server me-2" title="IT Infrastructure"></i>
-                                <i class="fas fa-shield-alt me-2" title="Security"></i>
-                                <i class="fas fa-network-wired" title="Networking"></i>
+                            <h3>ITMP USK Security System</h3>
+                            <p>Development and implementation of comprehensive security systems and IT infrastructure for the Institute of Technology and Management Policy USK.</p>
+                            <div class="portfolio-tech" aria-label="Technologies used">
+                                <i class="fas fa-server me-2" aria-hidden="true" title="IT Infrastructure"></i>
+                                <i class="fas fa-shield-alt me-2" aria-hidden="true" title="Security"></i>
+                                <i class="fas fa-network-wired" aria-hidden="true" title="Networking"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item scroll-reveal">
                         <div class="portfolio-icon p-3">
-                            <i class="fas fa-university fa-3x text-primary"></i>
+                            <i class="fas fa-university fa-3x text-primary" aria-hidden="true"></i>
                         </div>
                         <div class="portfolio-content">
-                            <h3>Website WCU USK</h3>
-                            <p>Pengembangan website menggunakan WordPress untuk World Class University USK.</p>
-                            <div class="portfolio-tech">
-                                <i class="fab fa-wordpress me-2" title="WordPress"></i>
-                                <i class="fas fa-paint-brush me-2" title="UI/UX"></i>
-                                <i class="fas fa-mobile-alt" title="Responsive"></i>
+                            <h3>WCU USK Website</h3>
+                            <p>Custom WordPress website development for World Class University USK, featuring modern design and responsive layout.</p>
+                            <div class="portfolio-tech" aria-label="Technologies used">
+                                <i class="fab fa-wordpress me-2" aria-hidden="true" title="WordPress"></i>
+                                <i class="fas fa-paint-brush me-2" aria-hidden="true" title="UI/UX"></i>
+                                <i class="fas fa-mobile-alt" aria-hidden="true" title="Responsive"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item scroll-reveal">
                         <div class="portfolio-icon p-3">
-                            <i class="fas fa-coffee fa-3x text-primary"></i>
+                            <i class="fas fa-coffee fa-3x text-primary" aria-hidden="true"></i>
                         </div>
                         <div class="portfolio-content">
-                            <h3>Website Coffava Indonesia</h3>
-                            <p>Pengembangan website untuk Coffava Indonesia dengan fokus pada UI/UX design.</p>
-                            <div class="portfolio-tech">
-                                <i class="fas fa-paint-brush me-2" title="UI/UX"></i>
-                                <i class="fas fa-code me-2" title="Front-End"></i>
-                                <i class="fas fa-mobile-alt" title="Responsive"></i>
+                            <h3>Coffava Indonesia Website</h3>
+                            <p>Modern website development with focus on user experience and brand identity for Coffava Indonesia.</p>
+                            <div class="portfolio-tech" aria-label="Technologies used">
+                                <i class="fas fa-paint-brush me-2" aria-hidden="true" title="UI/UX"></i>
+                                <i class="fas fa-code me-2" aria-hidden="true" title="Front-End"></i>
+                                <i class="fas fa-mobile-alt" aria-hidden="true" title="Responsive"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item scroll-reveal">
                         <div class="portfolio-icon p-3">
-                            <i class="fas fa-book fa-3x text-primary"></i>
+                            <i class="fas fa-book fa-3x text-primary" aria-hidden="true"></i>
                         </div>
                         <div class="portfolio-content">
-                            <h3>Project Bookshelf Kanwil Kemenkumham Aceh</h3>
-                            <p>Pengembangan sistem manajemen perpustakaan untuk Kanwil Kemenkumham Aceh.</p>
-                            <div class="portfolio-tech">
-                                <i class="fas fa-database me-2" title="Database"></i>
-                                <i class="fas fa-code me-2" title="Development"></i>
-                                <i class="fas fa-book" title="Library System"></i>
+                            <h3>Digital Library System</h3>
+                            <p>Development of comprehensive library management system for Kanwil Kemenkumham Aceh with focus on user experience and efficiency.</p>
+                            <div class="portfolio-tech" aria-label="Technologies used">
+                                <i class="fas fa-database me-2" aria-hidden="true" title="Database"></i>
+                                <i class="fas fa-code me-2" aria-hidden="true" title="Development"></i>
+                                <i class="fas fa-book" aria-hidden="true" title="Library System"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item scroll-reveal">
                         <div class="portfolio-icon p-3">
-                            <i class="fas fa-coffee fa-3x text-primary"></i>
+                            <i class="fas fa-palette fa-3x text-primary" aria-hidden="true"></i>
                         </div>
                         <div class="portfolio-content">
-                            <h3>Design Template Coffava</h3>
-                            <p>Pembuatan template design untuk Coffava Indonesia meliputi social media kit, brand identity, dan marketing materials.</p>
-                            <div class="portfolio-tech">
-                                <i class="fas fa-palette me-2" title="Graphic Design"></i>
-                                <i class="fab fa-figma me-2" title="Figma"></i>
-                                <i class="fas fa-paint-brush me-2" title="Canva"></i>
+                            <h3>Coffava Brand Identity</h3>
+                            <p>Complete brand identity design including social media kit, marketing materials, and visual guidelines for Coffava Indonesia.</p>
+                            <div class="portfolio-tech" aria-label="Technologies used">
+                                <i class="fas fa-palette me-2" aria-hidden="true" title="Graphic Design"></i>
+                                <i class="fab fa-figma me-2" aria-hidden="true" title="Figma"></i>
+                                <i class="fas fa-paint-brush" aria-hidden="true" title="Canva"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item scroll-reveal">
                         <div class="portfolio-icon p-3">
-                            <i class="fas fa-book-reader fa-3x text-primary"></i>
+                            <i class="fas fa-book-reader fa-3x text-primary" aria-hidden="true"></i>
                         </div>
                         <div class="portfolio-content">
-                            <h3>Social Media Content Padebooks</h3>
-                            <p>Pembuatan konten sosial media untuk Padebooks termasuk template posting, story highlights, dan feed design.</p>
-                            <div class="portfolio-tech">
-                                <i class="fas fa-palette me-2" title="Graphic Design"></i>
-                                <i class="fas fa-paint-brush me-2" title="Canva"></i>
-                                <i class="fas fa-camera" title="Photo Editing"></i>
+                            <h3>Padebooks Social Media</h3>
+                            <p>Strategic social media content creation including post templates, story highlights, and cohesive feed design for Padebooks.</p>
+                            <div class="portfolio-tech" aria-label="Technologies used">
+                                <i class="fas fa-palette me-2" aria-hidden="true" title="Graphic Design"></i>
+                                <i class="fas fa-paint-brush me-2" aria-hidden="true" title="Canva"></i>
+                                <i class="fas fa-camera" aria-hidden="true" title="Photo Editing"></i>
                             </div>
                         </div>
                     </div>
@@ -262,43 +270,80 @@
     <!-- Contact Section -->
     <section id="contact" class="section-padding bg-light">
         <div class="container">
-            <h2 class="section-title text-center mb-5">Hubungi Saya</h2>
+            <h2 class="section-title text-center mb-5">Contact Me</h2>
             <div class="row">
                 <div class="col-lg-6 mb-4">
-                    <form class="contact-form">
-                        <div class="form-group mb-3">
-                            <input type="text" class="form-control" placeholder="Nama Anda" required>
+                    <form id="contactForm" class="contact-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" required aria-label="Enter your full name">
                         </div>
-                        <div class="form-group mb-3">
-                            <input type="email" class="form-control" placeholder="Email Anda" required>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" required aria-label="Enter your email address">
                         </div>
-                        <div class="form-group mb-3">
-                            <textarea class="form-control" rows="5" placeholder="Pesan Anda" required></textarea>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea class="form-control" id="message" rows="5" required aria-label="Enter your message"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn" aria-label="Send message">
+                            <i class="fas fa-paper-plane me-2" aria-hidden="true"></i>Send Message
+                        </button>
                     </form>
                 </div>
                 <div class="col-lg-6">
-                    <div class="contact-info">
-                        <h3>Informasi Kontak</h3>
-                        <p><i class="fas fa-envelope me-2"></i> khairunnas2804@gmail.com</p>
-                        <p><i class="fas fa-phone me-2"></i> +62 895-2086-9251</p>
-                        <div class="location-info">
-                            <p><i class="fas fa-map-marker-alt me-2"></i> <strong>Alamat Asal:</strong> Aceh Besar, Aceh</p>
-                            <p><i class="fas fa-building me-2"></i> <strong>Domisili:</strong> Jakarta Selatan, DKI Jakarta</p>
+                    <div class="contact-info scroll-reveal">
+                        <h3>Contact Information</h3>
+                        <div class="contact-details">
+                            <p>
+                                <i class="fas fa-envelope me-2" aria-hidden="true"></i>
+                                <a href="mailto:khairunnas2804@gmail.com">khairunnas2804@gmail.com</a>
+                            </p>
+                            <p>
+                                <i class="fas fa-phone me-2" aria-hidden="true"></i>
+                                <a href="tel:+6289520869251">+62 895-2086-9251</a>
+                            </p>
                         </div>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/khydesign" target="_blank" title="Design Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.instagram.com/khairuoennas" target="_blank" title="Personal Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://dribbble.com/khydesign" target="_blank" title="Dribbble"><i class="fab fa-dribbble"></i></a>
-                            <a href="https://www.behance.net/khydesign" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
-                            <a href="https://medium.com/@khairunnas-khai" target="_blank" title="Medium"><i class="fab fa-medium"></i></a>
-                            <a href="https://github.com/khairunnas-khai" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <div class="location-info">
+                            <p>
+                                <i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>
+                                <strong>Original Address:</strong> Aceh Besar, Aceh
+                            </p>
+                            <p>
+                                <i class="fas fa-building me-2" aria-hidden="true"></i>
+                                <strong>Current Location:</strong> South Jakarta, DKI Jakarta
+                            </p>
+                        </div>
+                        <div class="social-links" aria-label="Social Media Links">
+                            <a href="https://www.instagram.com/khydesign" target="_blank" rel="noopener noreferrer" aria-label="Design Instagram Profile">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.instagram.com/khairuoennas" target="_blank" rel="noopener noreferrer" aria-label="Personal Instagram Profile">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://dribbble.com/khydesign" target="_blank" rel="noopener noreferrer" aria-label="Dribbble Portfolio">
+                                <i class="fab fa-dribbble" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.behance.net/khydesign" target="_blank" rel="noopener noreferrer" aria-label="Behance Portfolio">
+                                <i class="fab fa-behance" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://medium.com/@khairunnas-khai" target="_blank" rel="noopener noreferrer" aria-label="Medium Blog">
+                                <i class="fab fa-medium" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://github.com/khairunnas-khai" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
                         </div>
                         <div class="social-labels mt-3">
-                            <span class="badge bg-primary me-2"><i class="fas fa-paint-brush me-1"></i> Design</span>
-                            <span class="badge bg-primary me-2"><i class="fas fa-code me-1"></i> Development</span>
-                            <span class="badge bg-primary"><i class="fas fa-pen me-1"></i> Writing</span>
+                            <span class="badge bg-primary me-2">
+                                <i class="fas fa-paint-brush me-1" aria-hidden="true"></i> Design
+                            </span>
+                            <span class="badge bg-primary me-2">
+                                <i class="fas fa-code me-1" aria-hidden="true"></i> Development
+                            </span>
+                            <span class="badge bg-primary">
+                                <i class="fas fa-pen me-1" aria-hidden="true"></i> Writing
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -309,11 +354,17 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Khairunnas. All rights reserved.</p>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2024 Khairunnas. All rights reserved.</p>
+                    <small class="text-muted">Front-end Developer & UI/UX Designer</small>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="js/script.js"></script>
